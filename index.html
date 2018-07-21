@@ -1,9 +1,334 @@
-<!DOCTYPE html>
+<?php
+session_start(); 
+?>
 <html>
-<head>
-	<title></title>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale: 1.0, user-scalable=0" />
+    <title>Admin Portal</title>
+    <script type="text/javascript" src="jquery.js"></script>
+    
+    <script type="text/javascript" src="jquery.min.js"></script>
+   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+<script>
+$(document).ready(function(){
+    $("#menu-icon2").click(function(){
+        $(".sidebar").toggle();
+    });
+});
+
+</script>
+
+<script type="text/javascript">
+   <!--
+      // Form validation code will come here.
+      function validate()
+      {
+      
+         if( document.myForm.sur_name.value == "" )
+         {
+            alert( "Please provide your name!" );
+            document.myForm.sur_name.focus() ;
+            return false;
+         }
+         
+         if( document.myForm.other_name.value == "" )
+         {
+            alert( "Please provide your othername" );
+            document.myForm.other_name.focus() ;
+            return false;
+         }
+         
+         
+         if( document.myForm.session.value == "Session" )
+         {
+            alert( "Please select the Exam year!" );
+            return false;
+         }
+
+         if( document.myForm.class.value == "Class" )
+         {
+            alert( "Please select the student's class!" );
+            return false;
+         }
+
+         if( document.myForm.term.value == "Term" )
+         {
+            alert( "Please select the Exam Term!" );
+            return false;
+         }
+
+
+        if( document.myForm.eng.value == "" )
+         {
+            alert( "English Score empty" );
+            document.myForm.eng.focus() ;
+            return false;
+         }
+
+        if( document.myForm.maths.value == "" )
+         {
+            alert( "Mathematics Score empty" );
+            document.myForm.maths.focus() ;
+            return false;
+         }
+
+         if( document.myForm.civ.value == "" )
+         {
+            alert( "Civic Education Score empty" );
+            document.myForm.civ.focus() ;
+            return false;
+         }
+
+
+
+
+         return( true );
+      }
+   //-->
+</script>
+
+    <link rel="stylesheet" type="text/css" href="jquery-ui-1.8.14.custom.css">
+    
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="style2.css">
+    <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.css">
+
+	<link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans|Oswald|Raleway|Roboto|Saira+Condensed" rel="stylesheet">
+
+
+
+
+<link rel="stylesheet" href="css/zerogrid.css">
+	
+	
+	<link rel="stylesheet" href="css/menu.css">
+	<link rel="stylesheet" href="css/lightbox.css">
+
+
+
+
 </head>
 <body>
+<div id="header">
+	<div class="logo"><img src="images/logo.png" width="50px" height="50px"><a href="#">New<span style="color:#f02ffa">Trend</span></a> 
+   </div>
+	<a id="menu-icon2" href="#"><img src="images/menu.png"></a>
+</div><!--- this is the end header tag-->
 
+
+
+
+<div id="container">
+	
+		<div class="sidebar">
+		
+		<ul id="nav">
+			<li><a class="selected" href="#">DASHBOARD</a></li>
+			<li><a href="#">Add Result</a></li>
+			<li><a href="#">Remove Result</a></li>
+			<li><a href="#">Update</a></li>
+			<li><a href="logout.php">Logout</a></li>
+		</ul>
+
+		</div><!---end side bar-->
+		<div class="content">
+			<h1>Dashboard</h1>
+			<p>Welcome! <?php $user = $_SESSION['visitor'];
+	   echo $user; ?></p>
+			<div id="box"><!--  box start-->
+				<div class="box-top"><!--  box-top start-->
+					Input Report
+				</div><!--  End of box-top-->
+				<div class="box-panel-report"> Student Record
+				</div>
+
+			</div><!--  End of box -->
+
+
+			<!--<div id="box">
+				<div class="box-top">
+					Student Result Input
+				</div>
+				<div class="box-panel"> <?php echo $user; ?> </div>-->
+<?php
+require_once('welcome.html');
+?>
+	
+		<form method="post" enctype="multipart/form-data" class="" action="adminproce.php" name="myForm" onsubmit="return(validate());">
+
+      
+  
+        <div class="form-group">
+        <label class="control-label" style="color:#000" >Candidate's Data<br><i class="fa fa-spinner fa-pulse fa-3x"></i></label>
+        <div class="input-group col-sm-3 col-md-3">
+            <input name="sur_name" type="text" class="form-control col-sm-3" id="sur_name"  placeholder="surname"/>
+            <div class="input-group-addon"><i class="fa fa-address-book-o " style="color:#ff0000"></i></div>
+        </div>
+        </div>
+
+
+        <div class="form-group">
+        <label class="sr-only"><font color="#000">Candidate's<br> Othername</font></label>
+        <div class="input-group col-sm-3 col-md-3">
+            <input name="other_name" type="text" class="form-control col-sm-3" id="other_name"  placeholder="othernames"/>
+        <div class="input-group-addon"><i class="fa fa-address-book-o" style="color:#ff0000"></i></div>
+        </div>
+        </div>
+
+           
+           <div class="form-group">
+        <label class="sr-only"><font color="#000">Session</font></label>
+        <div class="input-group col-sm-3 col-md-3"><div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+                <select class="form-control" name="session"  placeholder="Session">
+                <option>Session</option>
+                 <option>16/17</option>
+                 <option>17/18</option>
+                 </select>
+        </div>
+        </div>
+            
+             
+        <div class="form-group">
+        <label class="radio-inline">
+        <input type="radio" name="term" value="1st">1st Term</label>
+
+        <label class="radio-inline">
+        <input type="radio" name="term" value="2nd">2nd Term</label>
+
+        <label class="radio-inline">
+        <input type="radio" name="term" value="3rd">3rd Term</label>
+        
+        </div>
+
+
+            <div class="form-group">
+        <label class="sr-only"><font color="#000">Candidate's<br> Data</font></label>
+        <div class="input-group col-sm-3 col-md-3"><div class="input-group-addon"><i class="fa fa-group"></i></div>
+              <select class="form-control" name="class"  placeholder="Class">
+                <option>Class</option>
+                 <option>SS1</option>
+                 <option>SS2</option>
+                 </select>
+        </div>
+        </div>
+
+
+ 
+    <div class="form-inline">
+      
+      
+              <div class="form-group col-sm-2"> <label class="sr-only"> English</label>
+                <input class="form-control " type="text" name="eng" placeholder="Eng" size="3" maxlength="3" />
+                </div>
+
+             <div class="form-group col-sm-2"> <label class="sr-only"> Mathematics</label>
+            <input class="form-control" type="text" name="maths" placeholder="Math" size="3" maxlength="3" />
+            </div>
+
+             <div class="form-group col-sm-2"> <label class="sr-only"> Economics</label>
+            <input class="form-control" type="text" name="eco" placeholder="Eco" size="3" maxlength="3" />
+            </div>
+            
+
+             <div class="form-group col-sm-2"> <label class="sr-only"> Computer</label>
+            <input class="form-control" type="text" name="comp" placeholder="Comp" size="3" maxlength="3" />
+            </div>
+
+             <div class="form-group col-sm-2"> <label class="sr-only"> Civic</label>
+            <input class="form-control" type="text" name="civ" placeholder="civ" size="3" maxlength="3"/>
+            </div>
+
+
+             <div class="form-group col-sm-2"> <label class="sr-only"> Biology</label>
+            <input class="form-control" type="text" name="bio" placeholder="bio" size="3" maxlength="3" />
+            </div>
+
+        
+
+             <div class="form-group col-sm-2"> <label class="sr-only"> Physics</label>
+            <input class="form-control" type="text" name="phy" placeholder="phy" size="3" maxlength="3" />
+            </div>
+
+
+             <div class="form-group col-sm-2"> <label class="sr-only"> Chemical</label>
+            <input class="form-control" type="text" name="chem" placeholder="chem" size="3" maxlength="3" />
+            </div>
+
+
+             <div class="form-group col-sm-2"> <label class="sr-only"> Agric</label>
+            <input class="form-control" type="text" name="agri" placeholder="agri" size="3" maxlength="3"/>
+            </div>
+
+
+             <div class="form-group col-sm-2"> <label class="sr-only"> Account</label>
+            <input class="form-control" type="text" name="acc" placeholder="acc" size="3" maxlength="3"/>
+            </div>
+
+
+             <div class="form-group col-sm-2"> <label class="sr-only"> Commerce</label>
+            <input class="form-control" type="text" name="comm" placeholder="comm" size="3" maxlength="3" />
+            </div>
+
+
+             <div class="form-group col-sm-2"> <label class="sr-only"> Literature in English</label>
+            <input class="form-control" type="text" name="lit" placeholder="lit" size="3" maxlength="3" />
+            </div>
+
+
+             <div class="form-group col-sm-2"> <label class="sr-only"> Government</label>
+            <input class="form-control" type="text" name="govt" placeholder="govt" size="3" maxlength="3"/>
+            </div>
+
+
+             <div class="form-group col-sm-2"> <label class="sr-only"> CRS</label>
+            <input class="form-control" type="text" name="crs" placeholder="crs" size="3" maxlength="3" />
+            </div>
+
+
+             <div class="form-group col-sm-2"> <label class="sr-only"> Creative Art</label>
+            <input class="form-control" type="text" name="cca" placeholder="cca" size="3" maxlength="3" />
+            </div>
+
+
+             <div class="form-group col-sm-2"> <label class="sr-only"> Yoruba</label>
+            <input class="form-control" type="text" name="yor" placeholder="yor" size="3" maxlength="3"/>
+            </div>
+
+             <div class="form-group col-sm-2"> <label class="sr-only"> Food & Nut.</label>
+            <input class="form-control" type="text" name="fnut" placeholder="fnut" size="3" maxlength="3"  />
+            </div>
+            </div><!-- End of form-inline div-->
+
+     <div class="form-group">
+            <div class="form-group col-sm-3"> <label class=""> Teacher's Comments</label>
+    
+    <textarea name="comment" class="form-control" rows="3" id="comment" placeholder="teacher's comments" value="<?php echo $comment; ?>"></textarea></div>
+        
+        </div>
+        
+ 	<button type="submit" name="btnsave" class="btn btn-default">
+        <span class="glyphicon glyphicon-save"></span> &nbsp; Submit Entry
+        </button>
+      
+    </form>
+					
+	
+		</div><!---end content-->
+
+
+
+</div><!-- end of div container-->
+
+
+
+<script type="text/javascript" src="jquery-ui.js"></script>
+<script type="text/javascript" src="accordion.js"></script>
+<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+
+
+
+<!--<footer><center>Copyright 2017</center></footer>-->
 </body>
 </html>
